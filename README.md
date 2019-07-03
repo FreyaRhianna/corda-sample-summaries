@@ -380,7 +380,7 @@ In this CorDapp you can send Yo's! to all your friends running Corda nodes!
 ### Extending this sample
 - Extend the state to hold more information than just a string.
 - Create more complex flows (maybe recieving a 'yo!' triggers an automatic response of a `HelloState`)
-- Try querying information from the [vault in a flow](https://docs.corda.net/api-vault-query.html).
+- Try [querying information from the vault](https://docs.corda.net/api-vault-query.html) in a flow.
 
 ## [whistleblower](https://github.com/corda/samples/tree/release-V4/whistleblower) (Kotlin)
 ### Description
