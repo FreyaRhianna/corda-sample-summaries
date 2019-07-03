@@ -233,4 +233,14 @@ accept or modify the proposal, this attempt will be rejected automatically at th
 
 ---
 
-##
+### [Implicit-Cordapp-Upgrades](https://github.com/corda/samples/tree/release-V4/implicit-cordapp-upgrades)
+
+### Description
+This CorDapp shows how to carry out implicit upgrades of a CorDapp, by writing flows and contracts in a backwards compatible manner and taking advantage of Signature Constraints. 
+
+Implicit upgrades to the contract involve adding the new versions of a CorDapp to the whitelist (list of accepted CordApps on a network) and then using the version numbers to delegate to the correct flow handler for that version of an app. This allows a node to 'lazy upgrade' (upgrade only when they want to interact with a node that requires them to) and to continue interacting with other nodes running older versions of that app.
+### Feature Demonstrated 
+- Use versioning to delegate flow handlers
+### Use Cases
+
+### Extending The Sample
