@@ -118,10 +118,10 @@ This list of sanctioned entities is taken from a referenced `SanctionedEntities`
 - Append a reference state to a transaction
 ### Use Cases
 - When you want need the information from an updating state but you don't want to consume it in a transaction 
-    - We are a company that maintains a number of projects and we work with a number of different partners on these projects. We have one state that maintains the list of active partners currently working with us. 
+    - You are a company that maintains a number of projects and you work with a number of different partners on these projects. You have one state that maintains the list of active partners currently working with you. 
 		This state periodically is updated when new partners are added or old ones are removed.	When a new project is commenced, a new state is created for that project. That project assigns partners to work on it and this list is maintained in its state. 
-		Perodically, this project state is updated to track the progress of that project and to add or remove partners who are actively working on it. Whenever this state is updated, we want to be sure that all the partners that we have working on that
-		project are actively partnered with us. To make sure this is the case, we want to include a reference to our active partners state. NOTE: It may be the case that the activePartners state used by the initiating party is outdated. In order
+		Perodically, this project state is updated to track the progress of that project and to add or remove partners who are actively working on it. Whenever this state is updated, you want to be sure that all the partners that you have working on that
+		project are actively partnered with you. To make sure this is the case, you want to include a reference to your active partners state. NOTE: It may be the case that the `activePartners` state used by the initiating party is outdated. In order
 		to circumvent this issue, you'd want to include a referencing state that holds a [StatePointer](https://github.com/corda/token-sdk/blob/master/design/design.md#StatePointer) (of type `LinearID`) that points to the activePartners state. 
 
 ### Extending this sample
