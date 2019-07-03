@@ -240,7 +240,11 @@ This CorDapp shows how to carry out implicit upgrades of a CorDapp, by writing f
 
 Implicit upgrades to the contract involve adding the new versions of a CorDapp to the whitelist (list of accepted CordApps on a network) and then using the version numbers to delegate to the correct flow handler for that version of an app. This allows a node to 'lazy upgrade' (upgrade only when they want to interact with a node that requires them to) and to continue interacting with other nodes running older versions of that app.
 ### Feature Demonstrated 
+- Versioning flows via annotations
 - Use versioning to delegate flow handlers
+- Issue upgraded contracts to your test nodes via a .sh script
 ### Use Cases
-
+- When you don't need an atomic upgrade, but you want to change features of a contract
+    - You've issued an IOU that has an inefficient verification process that's slowing down the speed of transactions. Nodes are free to use the older version because the integrity of the agreement isn't compromised, but some nodes may choose to use the new version to speed up the operation of the dAPP.
 ### Extending The Sample
+- Take an old application that you've built  (or take the cordapp-example code) and create a second version of the contract with a new verification method. Create a flow delegation to handle the multiple versions.
