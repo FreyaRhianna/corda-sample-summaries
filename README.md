@@ -158,3 +158,19 @@ This CorDapp implements an oracle service that allows nodes to:
 
 ---
 ## [Observable states](https://github.com/corda/samples/tree/release-V4/observable-states)
+### Description
+This CorDapp shows how Corda's observable states feature works. Observable states is the ability for nodes who are not 
+participants in a transaction to still store them if the transactions are sent to them.
+
+In this CorDapp, we assume that when a seller creates some kind of `HighlyRegulatedState`, they must notify the state 
+and national regulators. There are two ways to use observable states:
+### Features Demonstrated 
+- Manually send a non-signing party a copy of a signed transaction
+### Use Cases
+- Have a party store a state in their vault without having to be a required signer on it
+    - In a transaction you have a third party that you don't want to give the oppotunity to block your transactions but has to be made aware
+		of a transaction that has taken place. Perhaps you are mantaining a closed auction and, upon the auction closing, you are required by a regulator
+		to announce the winner of the bid to all involved parties and the regulator. You don't want the losing parties to be able to block the closing of the 
+		auction (for self interest, they may decide to not sign), but they do need to see the finished state. 
+### Extending this sample
+- Automate the sending of a signed transaction to a non-signing party via the `FinalityFlow`
