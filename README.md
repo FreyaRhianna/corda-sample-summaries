@@ -31,3 +31,43 @@ who manage to get ahold of the state cannot identity the whistle-blower or inves
 - In the `BlowWhistleFlowResponder` class, the `checkTransaction` function is incomplete. Add some validation for the transaction.
 - Once a complaint has been lodged, a party may want to take action. Create a state for these actions and a flow that references the original complaint. 
 
+---
+
+## [TimeSheet](https://github.com/corda/samples/tree/release-V4/timesheet-example)
+### Description
+This CordApp demonstrates the use of schemas in a transaction.
+
+In this CorDapp, two nodes can exchange an IOU that encapsulates a `QueryableState` that returns an instance of a schema object. This schema object is the invoice and holds all of the information related to the IOU.
+### Features Demonstrated
+- Write a MappedSchema
+- Write a QueryableState
+- Use a MappedSchema in a flow
+- Create an Oracle to retrieve external information
+- Use data classes to transfer information between Oracles and nodes
+### Use Cases
+- Export the information in a state into a database compatable schema. 
+    - You may have previously existing databases that you want to store state information in, off-ledger. You can write a schema that 
+		corresponds to the required fields and use this to hold your state information.
+- You might want to create a custom table with your own defined attributes in your node's database. You can the query the vault according to these attributes.
+	- One of your flows may use states that hold evolving information about the amount of money left in an IOU agreement. Maybe you want to send out
+		a notice to all nodes that owe you more than a threshold (maybe those who owe you more than £100). You could use this newly defined table
+		to query the vault specifically on the 'amountOwed' attribute. 
+- Create relational joins between the node's tables and your organisation's tables
+	- You may use Corda to keep track of purchases. Perhaps you have to insist that the productIDs of those items sold corresponds
+		to some productId you use internally to keep track of your stock. 
+### Extending this sample
+
+- There is no code in `SalaryRateOracle` that handles the situation where a pay rate is missing.
+- In `InvoiceContract` write a clause that supports a partial payment.
+- Create code that registers a new job when it commences and links the invoice to that job.
+
+---
+
+## [Spring-webserver](https://github.com/corda/samples/tree/release-V4/spring-webserver)
+### Description
+
+### Features Demonstrated
+
+### Use Cases
+
+### Extending this sample
