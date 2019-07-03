@@ -2,7 +2,8 @@
 
 ---
 
-## [blacklist](https://github.com/corda/samples/tree/release-V4/blacklist)
+## [blacklist](https://github.com/corda/samples/tree/release-V4/blacklist) (Kotlin)
+
 
 ### Description
 
@@ -79,7 +80,8 @@ hold a blacklist, but it is much better off to query the vault for the current n
 
 ---
 
-## [corda-nodeinfo](https://github.com/corda/samples/tree/release-V4/corda-nodeinfo)
+## [corda-nodeinfo](https://github.com/corda/samples/tree/release-V4/corda-nodeinfo) (Kotlin)
+
 
 ### Description
 
@@ -135,7 +137,9 @@ See Docs related to the [CordaRPCClient](https://docs.corda.net/tutorial-clientr
 
 ---
 
-## [cordapp-example](https://github.com/corda/samples/tree/release-V4/cordapp-example)
+
+## [cordapp-example](https://github.com/corda/samples/tree/release-V4/cordapp-example) (Kotlin, Java)
+
 
 ### Description
 This CorDapp allows nodes to agree IOUs with each other, as long as they obey the following contract rules:
@@ -182,7 +186,9 @@ None.
 
 ---
 
-## [explicit-cordapp-upgrades](https://github.com/corda/samples/tree/release-V4/explicit-cordapp-upgrades)
+
+## [explicit-cordapp-upgrades](https://github.com/corda/samples/tree/release-V4/explicit-cordapp-upgrades) (Kotlin)
+
 
 ### Description
 
@@ -234,7 +240,9 @@ Also see [Implicit Cordapp Upgrades](https://github.com/corda/samples/tree/relea
 
 ---
 
-## [flow-db](https://github.com/corda/samples/tree/release-V4/flow-db)
+
+## [flow-db](https://github.com/corda/samples/tree/release-V4/flow-db) (Kotlin)
+
 
 ### Description
 
@@ -281,7 +289,9 @@ SQLserver can easily by used instead.
 
 ---
 
-## [flow-http](https://github.com/corda/samples/tree/release-V4/flow-http)
+
+## [flow-http](https://github.com/corda/samples/tree/release-V4/flow-http) (Kotlin)
+
 
 ### Description
 This CorDapp provides a simple example of how HTTP requests can be made in flows. In this case, the flow makes an HTTP request to retrieve the original BitCoin readme from GitHub.
@@ -317,7 +327,8 @@ presented with the same response.
 
 ---
 
-## [heartbeat](https://github.com/corda/samples/tree/release-V4/heartbeat)
+## [heartbeat](https://github.com/corda/samples/tree/release-V4/heartbeat) (Kotlin)
+
 
 ### Description
 
