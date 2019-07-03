@@ -1,9 +1,8 @@
-# corda-sample-summaries
-A guide to the Corda samples
+# A guide to the Corda samples
 
 ---
 
-## [Blacklist](https://github.com/corda/samples/tree/release-V4/blacklist)
+## [blacklist](https://github.com/corda/samples/tree/release-V4/blacklist)
 
 ### Description
 
@@ -80,7 +79,7 @@ hold a blacklist, but it is much better off to query the vault for the current n
 
 ---
 
-## [Node Info](https://github.com/corda/samples/tree/release-V4/corda-nodeinfo)
+## [corda-nodeinfo](https://github.com/corda/samples/tree/release-V4/corda-nodeinfo)
 
 ### Description
 
@@ -136,7 +135,7 @@ See Docs related to the [CordaRPCClient](https://docs.corda.net/tutorial-clientr
 
 ---
 
-## [CorDapp-example (IOU)](https://github.com/corda/samples/tree/release-V4/cordapp-example)
+## [cordapp-example](https://github.com/corda/samples/tree/release-V4/cordapp-example)
 
 ### Description
 This CorDapp allows nodes to agree IOUs with each other, as long as they obey the following contract rules:
@@ -183,7 +182,7 @@ None.
 
 ---
 
-## [Explicit-cordapp-upgrades](https://github.com/corda/samples/tree/release-V4/explicit-cordapp-upgrades)
+## [explicit-cordapp-upgrades](https://github.com/corda/samples/tree/release-V4/explicit-cordapp-upgrades)
 
 ### Description
 
@@ -235,7 +234,7 @@ Also see [Implicit Cordapp Upgrades](https://github.com/corda/samples/tree/relea
 
 ---
 
-## [Flow-db](https://github.com/corda/samples/tree/release-V4/flow-db)
+## [flow-db](https://github.com/corda/samples/tree/release-V4/flow-db)
 
 ### Description
 
@@ -282,7 +281,7 @@ SQLserver can easily by used instead.
 
 ---
 
-## [Flow-Http](https://github.com/corda/samples/tree/release-V4/flow-http)
+## [flow-http](https://github.com/corda/samples/tree/release-V4/flow-http)
 
 ### Description
 This CorDapp provides a simple example of how HTTP requests can be made in flows. In this case, the flow makes an HTTP request to retrieve the original BitCoin readme from GitHub.
@@ -318,7 +317,7 @@ presented with the same response.
 
 ---
 
-## [Heartbeat](https://github.com/corda/samples/tree/release-V4/heartbeat)
+## [heartbeat](https://github.com/corda/samples/tree/release-V4/heartbeat)
 
 ### Description
 
