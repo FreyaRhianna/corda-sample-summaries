@@ -58,9 +58,9 @@ This CordApp demonstrates the use of schemas in a transaction.
 
 In this CorDapp, two nodes can exchange an IOU that encapsulates a `QueryableState` which returns an instance of a schema object. This schema object is the invoice and holds all of the information related to the IOU.
 ### Features Demonstrated
-- Write a MappedSchema
-- Write a QueryableState
-- Use a MappedSchema in a flow
+- Write a `MappedSchema`
+- Write a `QueryableState`
+- Use a `MappedSchema` in a flow
 - Create an Oracle to retrieve external information
 - Use data classes to transfer information between Oracles and nodes
 ### Use Cases
