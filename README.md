@@ -235,17 +235,121 @@ Also see [Implicit Cordapp Upgrades](https://github.com/corda/samples/tree/relea
 
 ---
 
-## [Blacklist](https://github.com/corda/samples/tree/release-V4/blacklist)
+## [Flow-db](https://github.com/corda/samples/tree/release-V4/flow-db)
 
 ### Description
 
+This CorDapp provides a simple example of how the node database can be accessed in flows. In this case, the flows maintain a table of cryptocurrency values in the node's database. There are three flows:
+
+The CorDapp defines three flows:
+
+AddTokenValueFlow, which adds a new token to the database table with an initial value
+UpdateTokenValueFlow, which updates the value of an existing token in the database table
+QueryTokenValueFlow, which reads the value of an existing token from the database table
+Under the hood, the database accesses are managed by the CryptoValuesDatabaseService CordaService.
+
+Be aware that support of database accesses in flows is currently limited:
+
+The operation must be executed in a BLOCKING way. Flows don't currently support suspending to await an operation's response
+The operation must be idempotent. If the flow fails and has to restart from a checkpoint, the operation will also be replayed
+
 ### Features Demonstrated
+
+- Testing with MockNetworks and Unit-tests
+- Initiating a jdbcSession through a node's [ServiceHub](https://docs.corda.net/api/kotlin/corda/net.corda.core.node/-service-hub/index.html)
+- Creating a custom cordaService to handle serialization/deserialization of tokens
+- Defining custom SQL queries and mapping parameters to the queries
 
 ### Cases
 
+- Accessing Legacy databases / integration with existing systems
+- Storing reference data uncoupled from a state
+    - table of crypto-token values (this sample)
+    - addresses/information of entities who do not have an on-ledger representation
+    - URLs or mirror links
+- GDPR compliance (some customer data may not be suitable on an immutable ledger)
+
 ### Extending the Sample
+
+- Interact with a different database (see [Node Configuration](https://docs.corda.net/head/node-database.html))
+- Implement more complex SQL queries in `CryptoValuesDatabaseService`
+- Execute custom [sub-flows](https://docs.corda.net/flow-state-machines.html#sub-flows) based on SQL return values
 
 ### Notes
 
+By default nodes are configured to use an H2 database but PostgreSQL and 
+SQLserver can easily by used instead.
+
 ---
 
+## [Flow-Http](https://github.com/corda/samples/tree/release-V4/flow-http)
+
+### Description
+This CorDapp provides a simple example of how HTTP requests can be made in flows. In this case, the flow makes an HTTP request to retrieve the original BitCoin readme from GitHub.
+
+Be aware that support of HTTP requests in flows is currently limited:
+
+The request must be executed in a BLOCKING way. Flows don't currently support suspending to await an HTTP call's response
+The request must be idempotent. If the flow fails and has to restart from a checkpoint, the request will also be replayed
+
+### Features Demonstrated
+- Http request from within a flow
+- Using libraries within your flows
+
+### Cases
+- You want to interact through flows with API endpoints
+    - Have transaction details forwarded to an analytics service etc.
+    - Do a GET request to retrieve details
+- Retrieve (non-critical) data from the web to modify states or execute conditional behavior
+    - Parse a web-page
+
+### Extending the Sample
+
+- Try interacting with a 3rd party API service
+- Build in error handling for failed responses
+- Take transaction details and issue http receipts with details.
+
+### Notes
+
+Important! This simple request must be executed in a BLOCKING manner. If you are wishing
+to use HTTP request responses in state verification, or take advantage of Corda's state machine serialization behavior please look
+at implementing [Oracles](https://docs.corda.net/key-concepts-oracles.html) - to ensure multiple nodes are
+presented with the same response.
+
+---
+
+## [Heartbeat](https://github.com/corda/samples/tree/release-V4/heartbeat)
+
+### Description
+
+This CorDapp is a simple showcase of scheduled activities (i.e. activities started by a node at a specific time without direct input from the node owner).
+
+A node starts its heartbeat by calling the StartHeartbeatFlow. This creates a HeartState on the ledger. This HeartState has a scheduled activity to start the HeatbeatFlow one second later.
+
+When the HeartbeatFlow runs one second later, it consumes the existing HeartState and creates a new HeartState. The new HeartState also has a scheduled activity to start the HeatbeatFlow in one second.
+
+In this way, calling the StartHeartbeatFlow creates an endless chain of HeartbeatFlows one second apart.
+
+### Features Demonstrated
+- initializing Java `Instant` object to represent time from Epoch
+- implementation of `ScheduledState` interface on the state object so defined flow will execute at the passed Instant.
+- user of `ProgressTracker` to track stages of Flow and subFlow
+
+### Cases
+- Issue monthly statements on a schedule
+    - generate a balance report
+    - create an Obligation or IOU for a recurring time-frame or point in the future
+- Have your CorDapp delay a Flow in anticipation of a future event
+    - wait for an on-ledger independent transaction
+    - wait for an off-ledger condition through the use of an [Oracle](https://docs.corda.net/key-concepts-oracles.html)
+- Creating a continuous "clock-cycle" like execution (as this sample does)
+    - execute batch transactions through regular cycles
+
+### Extending the Sample
+- Override the `Instant` parameter of the HeartState primary constructor to set different delays
+- Add conditions to create dynamic schedules based on some state of the world
+    - For example, query the network map for number of Notaries and vary delay a flow based on network resources.
+- Use extended recurring subFlows (similar to the sample) with varying delays to compose a song or return an artistic output. 
+
+
+### Notes
