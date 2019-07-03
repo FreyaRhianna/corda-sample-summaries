@@ -105,6 +105,21 @@ This list of sanctioned entities is taken from a referenced `SanctionedEntities`
 		project are actively partnered with us. To make sure this is the case, we want to include a reference to our active partners state. NOTE: It may be the case that the activePartners state used by the initiating party is outdated. In order
 		to circumvent this issue, you'd want to include a referencing state that holds a [StatePointer](https://github.com/corda/token-sdk/blob/master/design/design.md#StatePointer) (of type `LinearID`) that points to the activePartners state. 
 
-### Extending  this sample
+### Extending this sample
 - Add a command for transferring an IOU to a new beneficiary and require that this beneficiary is a sanctioned entity.
 - Add a StatePointer to the referenced state and use that to point to the SanctionedEntity to ensure that the SanctionedEntity list is the most up to date. 
+
+---
+
+## [PigTail](https://github.com/corda/samples/tree/release-V4/pigtail)
+### Description
+This CorDapp sample demonstrates how to setup a Braid service and JS client to interact with a Corda backend.
+### Features Demonstrated
+- Bootstrap a braid server through a CordaService
+- Add flows and services to braid server
+- Setup config for the braid server including port number and HTTPS vs HTTP
+- Expose HTTP endpoints using a Braid Service that can be consumed by a Javascript client
+### Use Cases
+- [SEE SPRINGBOOT]()
+### Extending this sample
+- Take an appication you've already built (or one of the other samples) and expose it's flows using the Braid service.
