@@ -380,7 +380,7 @@ In this CorDapp you can send Yo's! to all your friends running Corda nodes!
 ### Extending this sample
 - Extend the state to hold more information than just a string.
 - Create more complex flows (maybe recieving a 'yo!' triggers an automatic response of a `HelloState`)
-- Try querying information from the vault in a flow.
+- Try querying information from the [vault in a flow](https://docs.corda.net/api-vault-query.html).
 
 ## [whistleblower](https://github.com/corda/samples/tree/release-V4/whistleblower) (Kotlin)
 ### Description
@@ -440,6 +440,9 @@ In this CorDapp, two nodes can exchange an IOU that encapsulates a `QueryableSta
 - There is no code in `SalaryRateOracle` that handles the situation where a pay rate is missing.
 - In `InvoiceContract` write a clause that supports a partial payment.
 - Create code that registers a new job when it commences and links the invoice to that job.
+
+### Notes
+See the API for [QueryableState](https://docs.corda.net/api-persistence.html?highlight=queryable)
 
 ---
 
@@ -619,13 +622,25 @@ accept or modify the proposal, this attempt will be rejected automatically at th
 This CorDapp shows how to carry out implicit upgrades of a CorDapp, by writing flows and contracts in a backwards compatible manner and taking advantage of Signature Constraints. 
 
 Implicit upgrades to the contract involve adding the new versions of a CorDapp to the whitelist (list of accepted CordApps on a network) and then using the version numbers to delegate to the correct flow handler for that version of an app. This allows a node to 'lazy upgrade' (upgrade only when they want to interact with a node that requires them to) and to continue interacting with other nodes running older versions of that app.
-### Feature Demonstrated 
+### Features Demonstrated 
 - Versioning flows via annotations
 - Use versioning to delegate flow handlers
 - Issue upgraded contracts to your test nodes via a .sh script
 ### Use Cases
 - When you don't need an atomic upgrade, but you want to change features of a contract
     - You've issued an IOU that has an inefficient verification process that's slowing down the speed of transactions. Nodes are free to use the older version because the integrity of the agreement isn't compromised, but some nodes may choose to use the new version to speed up the operation of the dAPP.
+
+See the following links for more in-depth description of scenarios suited to Implicit Contract Upgrades
+
+[Contract Upgrades and Constraints in V3](https://medium.com/corda/contract-upgrades-constraints-in-v3-d5b14d5fb258)
+
+[Upgrading Contracts](https://docs.corda.net/head/contract-upgrade.html)
+
+
 ### Extending The Sample
 - Take an old application that you've built  (or take the cordapp-example code) and create a second version of the contract with a new verification method. Create a flow delegation to handle the multiple versions.
+
+
+### Notes
+Also see [Explicit Cordapp Upgrades](https://github.com/corda/samples/tree/release-V4/explicit-cordapp-upgrades)
 
