@@ -68,15 +68,15 @@ In this CorDapp, two nodes can exchange an IOU that encapsulates a `QueryableSta
 This project defines a simple Spring webserver that connects to a Corda node via RPC.
 ### Features Demonstrated
 - Create a Spring Boot server
-- Create a RESTful API for corda
+- Create a RESTful API for Corda
 ### Use Cases
-- Present information from the corda nodes over HTTP
+- Present information from the Corda nodes over HTTP
     - Maybe you are a museum that is leasing out art works. These lease agreements are kept track of using a Corda APP, but the museums' curators aren't familiar with Corda
 		and don't want to have to worry about using the shell to retrieve this information. You could create a web interface that retrieves data from the vault and presents it in an
 		HTML file.
 - Trigger flows from a node over HTTP
 	- Perhaps you're running a public node that allows users of your website to cast a ballot in some vote. You can do all of the login functionality
-		from a standard web front end and create a REST API that triggers corda functionality. You can guard end points the same way you would with a normal API.
+		from a standard web front end and create a REST API that triggers Corda functionality. You can guard end points the same way you would with a normal API.
 - Display flow progress 
 	- Perhaps you are managing an extensive registration process that requires a lot of back and forth between two parties. For example, student finance.
 		It may be useful for the counterParty (in this instance, a student) to see where the application presently is (and what are the next steps). This could be done as a series of 
@@ -168,9 +168,34 @@ and national regulators. There are two ways to use observable states:
 - Manually send a non-signing party a copy of a signed transaction
 ### Use Cases
 - Have a party store a state in their vault without having to be a required signer on it
-    - In a transaction you have a third party that you don't want to give the oppotunity to block your transactions but has to be made aware
-		of a transaction that has taken place. Perhaps you are mantaining a closed auction and, upon the auction closing, you are required by a regulator
+    - In a transaction you have a third party that you don't want to give the opportunity to block your transactions but has to be made aware
+		of a transaction that has taken place. Perhaps you are maintaining a closed auction and, upon the auction closing, you are required by a regulator
 		to announce the winner of the bid to all involved parties and the regulator. You don't want the losing parties to be able to block the closing of the 
 		auction (for self interest, they may decide to not sign), but they do need to see the finished state. 
 ### Extending this sample
 - Automate the sending of a signed transaction to a non-signing party via the `FinalityFlow`
+
+---
+###[Obligations](https://github.com/corda/samples/tree/release-V4/obligation-cordapp)
+### Description
+This CorDapp comprises a demo of an IOU-like agreement that can be issued, transfered and settled confidentially. 
+
+The CorDapp allows you to issue, transfer (from old lender to new lender) and settle (with cash) obligations. It also 
+comes with an API and website that allows you to do all of the aforementioned things.
+### Features Demonstrated 
+- Use anonymous identities in transactions
+- Create an obligation
+- Transfer ownership of an obligation between parties
+- Connect AngularJS to a Corda backend in java and kotlin
+- Compare token types
+### Use Cases
+- Create financial instruments that can change ownership
+    - You may have lent money to another party and created an obligation on Corda to record this transaction. You may want to be able to sell this obligation
+		to another party in the future (so that, now, the borrower owes the new lender the money) 
+- Create obligations with anonymised participants
+    - If you're creating a state that may frequently change hands (e.g an obligation that's intended to be used as a financial instrument) you may not want the history
+		of the lender parties to be kept on ledger. By anonymising the parties involved during the transaction, you can keep this information hidden.
+### Extending this sample
+- In the `ObligationBaseFlow`, in the internal class `SignxFlowNoChecking`, add verification for the signed transaction.
+- Add a time-window for the period of time that an obligation can be traded
+- Add a sanction list for the entites that can be transferred the obligation(see [reference-states]())
