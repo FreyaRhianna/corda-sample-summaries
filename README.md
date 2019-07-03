@@ -176,7 +176,7 @@ and national regulators. There are two ways to use observable states:
 - Automate the sending of a signed transaction to a non-signing party via the `FinalityFlow`
 
 ---
-###[Obligations](https://github.com/corda/samples/tree/release-V4/obligation-cordapp)
+### [Obligations](https://github.com/corda/samples/tree/release-V4/obligation-cordapp)
 ### Description
 This CorDapp comprises a demo of an IOU-like agreement that can be issued, transfered and settled confidentially. 
 
@@ -199,3 +199,38 @@ comes with an API and website that allows you to do all of the aforementioned th
 - In the `ObligationBaseFlow`, in the internal class `SignxFlowNoChecking`, add verification for the signed transaction.
 - Add a time-window for the period of time that an obligation can be traded
 - Add a sanction list for the entites that can be transferred the obligation(see [reference-states]())
+
+
+---
+### [Negotiation-cordapp](https://github.com/corda/samples/tree/release-V4/negotiation-cordapp)
+
+### Description
+This CorDapp shows how multi-party negotiation is handled on the Corda ledger, in the absence of an API for user 
+interaction.
+
+A flow is provided that allows a node to propose a trade to a counterparty. The counterparty has two options:
+
+* Accepting the proposal, converting the `ProposalState` into a `TradeState` with identical attributes
+* Modifying the proposal, consuming the existing `ProposalState` and replacing it with a new `ProposalState` for a new 
+  amount
+
+Only the recipient of the proposal has the ability to accept it or modify it. If the sender of the proposal tries to 
+accept or modify the proposal, this attempt will be rejected automatically at the flow level.
+
+### Feature Demonstrated
+- Accessing `FlowSession.counterParty` to control who initiates a flow.
+- Separating a business use case into multiple flow.
+- Throwing FlowExceptions to manually abort flows. 
+### Use Cases
+- Performing business logic on a received state before finalising
+    - It's not always going to be the case that a state received from a flow can be immediately approved.
+  For example, with a real estate registration, there may be a verification process that cant be automated and has to occur off ledger first (e.g a certificate of ownership in an attachment may need to be checked by a human entity). You can use this demostrated technique to divide this flow up where necessary to allow for the off-ledger components.
+- Negotiating terms of a contract
+    - It may be the case that two interacting bodies have two different expectations of the information given in a state. The process of modifying the state and proposing alternatives may be automated (e.g the alternate flows are automtically triggered).
+
+### Extending The Sample
+- Create a negotiation bot (a buyer and a seller) that are negotiating an art sale. The buyer has an upper limit on the money they will accept for the trade and the seller has a lower limit on the money they will accept. They are trying to minimise/maximise the agreed upon price respectively. Create a modifyable state that alters these proposals until an agreement is reached. 
+
+---
+
+##
