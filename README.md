@@ -686,7 +686,7 @@ The NonLogging Bank however will not print out this transaction information beca
 ### Description
 This CorDapp gives a demonstration of how third party libraries can be used by a Corda node.
 
-The CorDapp uses opengamma's proprietary model to showcase the SIMM process and integrate it within the app. 
+The CorDapp uses [OpenGamma's](http://www.opengamma.com) proprietary model to showcase the SIMM process and integrate it within the app. 
 
 **NOTE** Due to the proprietary nature of this service, the actual sample is taking stub data (faked data) and using that instead of the opengamma analytics engine. The format of the data is identical. 
 ### Features Demonstrated
@@ -704,4 +704,26 @@ The CorDapp uses opengamma's proprietary model to showcase the SIMM process and 
 
 ---
 
-### 
+##[notary-demo](https://github.com/corda/corda/tree/master/samples/notary-demo)
+### Description
+This CorDapp demonstrates how to use a single-node notary vs a distributed notary, and also gives examples of the potential pluggable consensus algorithms you can use for that distributed notary.
+
+The CorDapp shows a party getting transactions notarised by either a single-node or a distributed notary service (using either the [RAFT consensus algorithm](https://raft.github.io/) or the [BFT-smart consensus algorithm](https://bft-smart.github.io/library/)).
+
+### Features Demonstrated
+- Create a custom notary in `MyCustomNotaryService`
+- How to edit the configuration files to test with different notaries
+### Use Cases
+- A notary is required for uniqueness consensus
+    - If you were using tokens to represent an asset like a house in a CorDapp that allows you to trade real estate, without a notary guaranteeing the uniqeness of spend, a house owner would be able to sell their house many times over ([double spending](https://www.investopedia.com/terms/d/doublespending.asp)).
+- A multi-node notary can be used to provide a highly available notary
+    - In a critical business case where the network needs to provide assurance of availability, a multi-node notary can be used to provide fault-tolerance. NOTE: Multi-node notaries are  
+### Extending The Sample
+- Implement an alternative notary service in one of your CorDapps (or in one of the other sample apps)
+- Extend the custom notary to include more features.
+### Notes
+- Presently, you can only create custom notaries that are single-node.
+- Read more about notaries [here](https://docs.corda.net/key-concepts-notaries.html?highlight=notary)
+- **WARNING**: Customising a notary service is still an experimental feature and not recommended for most use-cases. The APIs for writing a custom notary may change in the future.
+               
+ 
