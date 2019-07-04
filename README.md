@@ -649,7 +649,7 @@ Also see [Explicit Cordapp Upgrades](https://github.com/corda/samples/tree/relea
 
 ---
 
-##[trader-demo](https://github.com/corda/corda/tree/master/samples/trader-demo)
+##[trader-demo](https://github.com/corda/corda/tree/master/samples/trader-demo) (Kotlin)
 ### Description
 This CorDapp demonstrates the manners by which you can configure a responder flow.
 
@@ -677,5 +677,31 @@ The NonLogging Bank however will not print out this transaction information beca
 - Use different means (subclassing and explicit configuration) to override the `SellerFlow` and change the behaviour of the initiating flow for different nodes.
 ### Notes 
 - To read more about ovveriding flows, click [here](https://docs.corda.net/head/flow-overriding.html).
-- **WARNING**: Pay careful attention to the annotations of the subclassing flows. The responders require `@InitatedBy` but initatiors that subclasss should **not** have the `@Initiating` subflow.
-- **WARNING**: The more overriding flows you have, the more complex it will be to ensure that the sequence of steps in the initatiors and the responders is compatible. If your CorDapp is growing complex, consider whether you should be using a new CorDapp with different functionality. 
+- **WARNING**: Pay careful attention to the annotations of the subclassing flows. The responders require `@InitatedBy` but initiators that subclasss should **not** have the `@Initiating` annotation.
+- **WARNING**: The more overriding flows you have, the more complex it will be to ensure that the sequence of steps in the initiators and the responders is compatible. If your CorDapp is growing complex, consider whether you should be using a new CorDapp with different functionality. 
+
+---
+
+##[simm-valuation-demo](https://github.com/corda/corda/tree/master/samples/simm-valuation-demo) (Kotlin, Java)
+### Description
+This CorDapp gives a demonstration of how third party libraries can be used by a Corda node.
+
+The CorDapp uses opengamma's proprietary model to showcase the SIMM process and integrate it within the app. 
+
+**NOTE** Due to the proprietary nature of this service, the actual sample is taking stub data (faked data) and using that instead of the opengamma analytics engine. The format of the data is identical. 
+### Features Demonstrated
+- How to integrate a third party library with a Corda node
+- Use of stub data for testing
+### Use Cases
+- If you need to use processes external to your Corda node
+    - Not all use cases require simple processing. It may be necessary to encapsulate some processing into a library and then to integrate this library with your Corda node.
+- Accessing third party libraries
+    - Most business logic is spread across a number of providers. Using this as an example, you can integrate these services with your Corda node.
+### Extending The Sample
+- If you have a license from OpenGamma, you can swap out the stub data for the analytics engine (which we will be happy to demonstrate)
+### Notes
+**WARNING** The analytics engine has been replaced with stub data in this demo. Results obtained by this sample should not be used as a source of information.
+
+---
+
+### 
