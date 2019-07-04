@@ -682,7 +682,7 @@ The NonLogging Bank however will not print out this transaction information beca
 
 ---
 
-##[simm-valuation-demo](https://github.com/corda/corda/tree/master/samples/simm-valuation-demo) (Kotlin, Java)
+## [simm-valuation-demo](https://github.com/corda/corda/tree/master/samples/simm-valuation-demo) (Kotlin, Java)
 ### Description
 This CorDapp gives a demonstration of how third party libraries can be used by a Corda node.
 
@@ -704,7 +704,7 @@ The CorDapp uses [OpenGamma's](http://www.opengamma.com) proprietary model to sh
 
 ---
 
-##[notary-demo](https://github.com/corda/corda/tree/master/samples/notary-demo)
+## [notary-demo](https://github.com/corda/corda/tree/master/samples/notary-demo) (Kotlin)
 ### Description
 This CorDapp demonstrates how to use a single-node notary vs a distributed notary, and also gives examples of the potential pluggable consensus algorithms you can use for that distributed notary.
 
@@ -726,4 +726,18 @@ The CorDapp shows a party getting transactions notarised by either a single-node
 - Read more about notaries [here](https://docs.corda.net/key-concepts-notaries.html?highlight=notary)
 - **WARNING**: Customising a notary service is still an experimental feature and not recommended for most use-cases. The APIs for writing a custom notary may change in the future.
                
+ ---
  
+ ## [network-verifier](https://github.com/corda/corda/tree/master/samples/network-verifier)
+ ### Description
+ This CorDapp shows a method of whitelisting participants in a flow.
+ 
+ 
+ ### Features Demonstrated
+ 
+ ### Use Cases
+ 
+ ### Extending The Sample
+ 
+ ### Notes
+ - **INCOMPLETE SAMPLE**
