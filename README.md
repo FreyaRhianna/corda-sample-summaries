@@ -437,7 +437,7 @@ In this CorDapp, two nodes can exchange an IOU that encapsulates a `QueryableSta
 		to some productId you use internally to keep track of your stock. 
 ### Extending this sample
 
-- There is no code in `SalaryRateOracle` that handles the situation where a pay rate is missing.
+- Add code in `SalaryRateOracle` to handle the case where a pay rate is missing.
 - In `InvoiceContract` write a clause that supports a partial payment.
 - Create code that registers a new job when it commences and links the invoice to that job.
 
@@ -491,6 +491,9 @@ This list of sanctioned entities is taken from a referenced `SanctionedEntities`
 ### Extending this sample
 - Add a command for transferring an IOU to a new beneficiary and require that this beneficiary is a sanctioned entity.
 - Add a StatePointer to the referenced state and use that to point to the SanctionedEntity to ensure that the SanctionedEntity list is the most up to date. 
+
+### Notes
+When you use a reference state in a transaction, the contract for that state is also not executed. 
 
 ---
 
@@ -644,3 +647,35 @@ See the following links for more in-depth description of scenarios suited to Imp
 ### Notes
 Also see [Explicit Cordapp Upgrades](https://github.com/corda/samples/tree/release-V4/explicit-cordapp-upgrades)
 
+---
+
+##[trader-demo](https://github.com/corda/corda/tree/master/samples/trader-demo)
+### Description
+This CorDapp demonstrates the manners by which you can configure a responder flow.
+
+The CorDapp has five nodes; Bank A, Bank B, Bank of Corda, a NonLogging Bank, and a notary bank. Four of the five banks will print transaction information because that is what is defined in the `LoggingBuyerFlow` (which subclasses, and therefore takes priority over, `BuyerFlow`). 
+The NonLogging Bank however will not print out this transaction information because it has been configured in the `deployNodes` task to explicitly user `BuyerFlow`.
+### Features Demonstrated 
+- Use of subclassing to override a flow responder
+- Use of explicit configuration to override a flow responder.
+### Use Cases
+- Subclassing a flow
+    - Extending a third party application
+        - You may be using a CorDapp that's been created by another party that you wish to add features to. Instead of recreating the app from scratch, you could extend the features of the app by subclassing the flows that need to change and adding new functionality.
+    - Modifying a generic flow to suit a specific business case
+        - You can add features necessary for a specific business case to a pre-existing flow.
+    - Borrowing features from a flow
+        - If you are creating a new flow that is very similar to one already in use in your app, it might be worth considering simply extending the behaviour.
+- Explicitly configuring a different responder
+    - Modifying a third party application 
+        - A third party may have provided a CorDapp but you need to completely override some of its elements to suit your business needs
+    - Redefining a generic flow to suit a specific business case 
+        - It may be the case that a parent flow shares very few, or no, features with the flow necessary for a particular business case. In this instance, you don't want to subclass the original flow but instead create an entirely new one.
+- Manage many nodes running the sample application with different responses.
+    - Overriding flows instead of creating separate CorDapps can be a simple way of handling the business case where nodes need to run variants on the parent flow.
+### Extending The Sample
+- Use different means (subclassing and explicit configuration) to override the `SellerFlow` and change the behaviour of the initiating flow for different nodes.
+### Notes 
+- To read more about ovveriding flows, click [here](https://docs.corda.net/head/flow-overriding.html).
+- **WARNING**: Pay careful attention to the annotations of the subclassing flows. The responders require `@InitatedBy` but initatiors that subclasss should **not** have the `@Initiating` subflow.
+- **WARNING**: The more overriding flows you have, the more complex it will be to ensure that the sequence of steps in the initatiors and the responders is compatible. If your CorDapp is growing complex, consider whether you should be using a new CorDapp with different functionality. 
