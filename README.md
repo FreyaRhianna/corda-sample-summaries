@@ -649,7 +649,7 @@ Also see [Explicit Cordapp Upgrades](https://github.com/corda/samples/tree/relea
 
 ---
 
-## [attachment-demo](https://github.com/corda/corda/tree/master/samples/attachment-demo)
+## [attachment-demo](https://github.com/corda/corda/tree/master/samples/attachment-demo) (Kotlin)
 ### Description
 This demo brings up three nodes, and sends a transaction containing an attachment from one to the other.
 
@@ -677,7 +677,9 @@ Attachments are useful for:
 
 See the official docs from more information about [attachments](https://docs.corda.net/tutorial-attachments.html?highlight=attachments)
 
-##[trader-demo](https://github.com/corda/corda/tree/master/samples/trader-demo)
+
+##[trader-demo](https://github.com/corda/corda/tree/master/samples/trader-demo) (Kotlin)
+
 ### Description
 This CorDapp demonstrates the manners by which you can configure a responder flow.
 
@@ -705,5 +707,77 @@ The NonLogging Bank however will not print out this transaction information beca
 - Use different means (subclassing and explicit configuration) to override the `SellerFlow` and change the behaviour of the initiating flow for different nodes.
 ### Notes 
 - To read more about ovveriding flows, click [here](https://docs.corda.net/head/flow-overriding.html).
-- **WARNING**: Pay careful attention to the annotations of the subclassing flows. The responders require `@InitatedBy` but initatiors that subclasss should **not** have the `@Initiating` subflow.
-- **WARNING**: The more overriding flows you have, the more complex it will be to ensure that the sequence of steps in the initatiors and the responders is compatible. If your CorDapp is growing complex, consider whether you should be using a new CorDapp with different functionality. 
+- **WARNING**: Pay careful attention to the annotations of the subclassing flows. The responders require `@InitatedBy` but initiators that subclasss should **not** have the `@Initiating` annotation.
+- **WARNING**: The more overriding flows you have, the more complex it will be to ensure that the sequence of steps in the initiators and the responders is compatible. If your CorDapp is growing complex, consider whether you should be using a new CorDapp with different functionality. 
+
+---
+
+## [simm-valuation-demo](https://github.com/corda/corda/tree/master/samples/simm-valuation-demo) (Kotlin, Java)
+### Description
+This CorDapp gives a demonstration of how third party libraries can be used by a Corda node.
+
+The CorDapp uses [OpenGamma's](http://www.opengamma.com) proprietary model to showcase the SIMM process and integrate it within the app. 
+
+**NOTE** Due to the proprietary nature of this service, the actual sample is taking stub data (faked data) and using that instead of the opengamma analytics engine. The format of the data is identical. 
+### Features Demonstrated
+- How to integrate a third party library with a Corda node
+- Use of stub data for testing
+### Use Cases
+- If you need to use processes external to your Corda node
+    - Not all use cases require simple processing. It may be necessary to encapsulate some processing into a library and then to integrate this library with your Corda node.
+- Accessing third party libraries
+    - Most business logic is spread across a number of providers. Using this as an example, you can integrate these services with your Corda node.
+### Extending The Sample
+- If you have a license from OpenGamma, you can swap out the stub data for the analytics engine (which we will be happy to demonstrate)
+### Notes
+**WARNING** The analytics engine has been replaced with stub data in this demo. Results obtained by this sample should not be used as a source of information.
+
+---
+
+## [notary-demo](https://github.com/corda/corda/tree/master/samples/notary-demo) (Kotlin)
+### Description
+This CorDapp demonstrates how to use a single-node notary vs a distributed notary, and also gives examples of the potential pluggable consensus algorithms you can use for that distributed notary.
+
+The CorDapp shows a party getting transactions notarised by either a single-node or a distributed notary service (using either the [RAFT consensus algorithm](https://raft.github.io/) or the [BFT-smart consensus algorithm](https://bft-smart.github.io/library/)).
+
+### Features Demonstrated
+- Create a custom notary in `MyCustomNotaryService`
+- How to edit the configuration files to test with different notaries
+### Use Cases
+- A notary is required for uniqueness consensus
+    - If you were using tokens to represent an asset like a house in a CorDapp that allows you to trade real estate, without a notary guaranteeing the uniqeness of spend, a house owner would be able to sell their house many times over ([double spending](https://www.investopedia.com/terms/d/doublespending.asp)).
+- A multi-node notary can be used to provide a highly available notary
+    - In a critical business case where the network needs to provide assurance of availability, a multi-node notary can be used to provide fault-tolerance. NOTE: Multi-node notaries are  
+### Extending The Sample
+- Implement an alternative notary service in one of your CorDapps (or in one of the other sample apps)
+- Extend the custom notary to include more features.
+### Notes
+- Presently, you can only create custom notaries that are single-node.
+- Read more about notaries [here](https://docs.corda.net/key-concepts-notaries.html?highlight=notary)
+- **WARNING**: Customising a notary service is still an experimental feature and not recommended for most use-cases. The APIs for writing a custom notary may change in the future.
+               
+ ---
+ 
+ ## [network-verifier](https://github.com/corda/corda/tree/master/samples/network-verifier)
+ ### Description
+ This CorDapp shows a method of whitelisting participants to add to a flow
+ 
+ 
+ ### Features Demonstrated
+ - Filtering through a list of all nodes registered to the network
+ - Filtering using the X500 certificate
+ 
+ ### Use Cases
+ 
+ - Adding users required as participants to a flow
+    - There may be situations whereby an entity on the network needs to sign on a transaction. You can use this sample
+    as a way of automatically adding that entity as a required participant using their X500 name.
+ - Adding users required as observers to a flow
+    - Similarly to above, you may not need an entity on the network to act as a required signer, but you may require they be 
+    made aware of a transaction. You can use this sample but alter it so that the entity is added as an observer rather than
+    a participant.
+ ### Extending The Sample
+ - Deploy four nodes on the network and create a transaction that requires a third node to act as a participant, and then as an
+ observer. You can [query what transactions were made visible to what nodes through the shell](https://docs.corda.net/api-vault-query.html?highlight=query%20vault)
+ ### Notes
+ - **INCOMPLETE SAMPLE**
