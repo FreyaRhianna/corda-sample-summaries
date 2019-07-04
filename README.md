@@ -649,6 +649,34 @@ Also see [Explicit Cordapp Upgrades](https://github.com/corda/samples/tree/relea
 
 ---
 
+## [attachment-demo](https://github.com/corda/corda/tree/master/samples/attachment-demo)
+### Description
+This demo brings up three nodes, and sends a transaction containing an attachment from one to the other.
+
+### Features Demonstrated
+- Establishing rpc connection through CordaRPCClient and interacting with nodes through 
+CordaRPCOps
+- Hashing a file to SecureHash.SHA256
+- Uploading attachment and verifying storage on node through hash
+- Downloading attachments from a node's corresponding Web endpoint.
+
+### Use Cases
+Attachments are useful for:
+- Inclusion of legal prose or metadata
+    - you have a corresponding invoice with a transaction
+    - you have a legal off-ledger contract backing the on-ledger representation
+    - you want to store additional data such as URLs, files, etc.; related to the transaction
+- One method of implementing [oracles](https://docs.corda.net/oracles.html) (suitable for large, static, and low value data)
+
+### Extending The Sample
+- try adding multiple attachments
+- use `AttachmentQueryCriteria` to filter attachments and run complex queries with boolean operators
+- go beyond a "two party trade flow" to send attachments to multiple nodes
+
+### Notes
+
+See the official docs from more information about [attachments](https://docs.corda.net/tutorial-attachments.html?highlight=attachments)
+
 ##[trader-demo](https://github.com/corda/corda/tree/master/samples/trader-demo)
 ### Description
 This CorDapp demonstrates the manners by which you can configure a responder flow.
