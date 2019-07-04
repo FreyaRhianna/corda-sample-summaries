@@ -730,14 +730,24 @@ The CorDapp shows a party getting transactions notarised by either a single-node
  
  ## [network-verifier](https://github.com/corda/corda/tree/master/samples/network-verifier)
  ### Description
- This CorDapp shows a method of whitelisting participants in a flow.
+ This CorDapp shows a method of whitelisting participants to add to a flow
  
  
  ### Features Demonstrated
+ - Filtering through a list of all nodes registered to the network
+ - Filtering using the X500 certificate
  
  ### Use Cases
  
+ - Adding users required as participants to a flow
+    - There may be situations whereby an entity on the network needs to sign on a transaction. You can use this sample
+    as a way of automatically adding that entity as a required participant using their X500 name.
+ - Adding users required as observers to a flow
+    - Similarly to above, you may not need an entity on the network to act as a required signer, but you may require they be 
+    made aware of a transaction. You can use this sample but alter it so that the entity is added as an observer rather than
+    a participant.
  ### Extending The Sample
- 
+ - Deploy four nodes on the network and create a transaction that requires a third node to act as a participant, and then as an
+ observer. You can [query what transactions were made visible to what nodes through the shell](https://docs.corda.net/api-vault-query.html?highlight=query%20vault)
  ### Notes
  - **INCOMPLETE SAMPLE**
