@@ -867,6 +867,8 @@ The CorDapp shows a party getting transactions notarised by either a single-node
  ### Extending The Sample
  - A list of the fields you can configure is given [here](https://docs.corda.net/corda-configuration-file.html) - experiment with the changes you can make.
  - Take an existing application you've worked on and extract out the node configuration into a config.conf file.
+ - Add error handling (throw exception when key not available) to the `GetStringConfigFlow`.
+ 
  ### Notes
 
 - See more about per-cordapp configuration in the [docs](https://docs.corda.net/corda-configuration-file.html)
