@@ -506,7 +506,7 @@ This CorDapp sample demonstrates how to setup a Braid service and JS client to i
 - Setup config for the braid server including port number and HTTPS vs HTTP
 - Expose HTTP endpoints using a Braid Service that can be consumed by a Javascript client
 ### Use Cases
-- [SEE SPRINGBOOT]()
+- See spring-webserver example
 ### Extending this sample
 - Take an application you've already built (or one of the other samples) and expose it's flows using the Braid service.
 
