@@ -678,7 +678,7 @@ Attachments are useful for:
 See the official docs from more information about [attachments](https://docs.corda.net/tutorial-attachments.html?highlight=attachments)
 
 
-##[trader-demo](https://github.com/corda/corda/tree/master/samples/trader-demo) (Kotlin)
+## [trader-demo](https://github.com/corda/corda/tree/master/samples/trader-demo) (Kotlin)
 
 ### Description
 This CorDapp demonstrates the manners by which you can configure a responder flow.
@@ -814,3 +814,24 @@ The CorDapp shows a party getting transactions notarised by either a single-node
  ### Notes
  - This sample is still under development and isn't without bugs (these are described in the comments of the code).
  - A more straight forward example of an oracle is available [here](https://github.com/corda/oracle-example)
+ 
+ ## [cordapp-configuration](https://github.com/corda/corda/tree/master/samples/cordapp-configuration)
+ ### Description
+ This sample shows a simple example of how to use per-corDapp configuration.
+ 
+ ### Features Demonstrated
+ - A configuration file
+ - Gradle build file to show how to install your CorDapp configuration
+ - A flow that prints the current CorDapp configuration
+ 
+
+ ### Use Cases
+ - Maintaining different configurations for separate environments
+    - Often nodes will require different configurations when they are deployed versus when the CordApp is in development. Maintaining the configuration files separately from the build file makes it easier to interchange these configurations as necessary.
+ - Maintain the same configuration across developers
+    - You may be working on a number of CorDapps at any given time, all installed on the same node. It may be that these corDapps require different configurations for testing purposes. Maintaining these configurations across the various CordApps makes it easier to work on multiple projects.
+ ### Extending The Sample
+ - A list of the fields you can configure is given [here](https://docs.corda.net/corda-configuration-file.html) - experiment with 
+ ### Notes
+
+- See more about per-cordapp configuration in the [docs](https://docs.corda.net/corda-configuration-file.html)
