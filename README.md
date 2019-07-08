@@ -861,8 +861,12 @@ The CorDapp shows a party getting transactions notarised by either a single-node
     - Often nodes will require different configurations when they are deployed versus when the CordApp is in development. Maintaining the configuration files separately from the build file makes it easier to interchange these configurations as necessary.
  - Maintain the same configuration across developers
     - You may be working on a number of CorDapps at any given time, all installed on the same node. It may be that these corDapps require different configurations for testing purposes. Maintaining these configurations across the various CordApps makes it easier to work on multiple projects.
+ - Maintain separate configurations between developers
+   - If you have multiple developers working on the same project, it may be that a configuration for one developer wont work for another (for example, there could be clashes in port usage). Allowing each developer to share the buid file for necessary dependencies, but allowing them to set the node configurations separetely, takes care of this issue.
+ 
  ### Extending The Sample
- - A list of the fields you can configure is given [here](https://docs.corda.net/corda-configuration-file.html) - experiment with 
+ - A list of the fields you can configure is given [here](https://docs.corda.net/corda-configuration-file.html) - experiment with the changes you can make.
+ - Take an existing application you've worked on and extract out the node configuration into a config.conf file.
  ### Notes
 
 - See more about per-cordapp configuration in the [docs](https://docs.corda.net/corda-configuration-file.html)
