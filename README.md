@@ -677,6 +677,37 @@ Attachments are useful for:
 
 See the official docs from more information about [attachments](https://docs.corda.net/tutorial-attachments.html?highlight=attachments)
 
+## [bank-of-corda-demo](https://github.com/corda/corda/tree/master/samples/bank-of-corda-demo)
+
+### Description
+This demo brings up three nodes: a notary, a node acting as the Bank of Corda that accepts requests for issuance of some asset and a node acting as Big Corporation which requests issuance of an asset (cash in this example).
+
+Upon receipt of a request the Bank of Corda node self-issues the asset and then transfers ownership to the requester after successful notarisation and recording of the issue transaction on the ledger.
+
+.. note:: The Bank of Corda is somewhat like a "Bitcoin faucet" that dispenses free bitcoins to developers for testing and experimentation purposes.
+
+### Features Demonstrated
+- Using `WebServerPluginRegistry` to create API endpoints for interacting with Corda nodes via RPC
+- Interaction with nodes via `CordaRPCOps`
+- Blocking to wait for future from client-side flow response
+- Handling errors such as node disconnect through exceptions
+
+### Use Cases
+The concept of a 'token faucet' is useful for any on-demand issuance:
+- You want to issue some none limited asset to users while tracking consumption
+    - NGO could issue food rations to track demand overtime and facilitate supply and logistics
+    - A Sports team could issue consumable supplies such as hockey tape, sports drinks, or pain relief cream.
+- You want to create flexible value issuance based on user requests
+    - Marketplace that wants to control liquidity by opening temporary faucets for users to request tokens
+
+### Extending the Sample
+- Adding a time-window to requests in order to control issuance
+- Create a user-request cap so that users are cut-off after a certain value of issuance
+- Switch the `Currency` being distributed in the sample with Corda's new [TokenSDK](https://github.com/corda/token-sdk)
+
+### Notes
+
+For more information and additional overview about establishing RPCConnections see [Interacting with a Node](https://docs.corda.net/clientrpc.html)
 
 ##[trader-demo](https://github.com/corda/corda/tree/master/samples/trader-demo) (Kotlin)
 
