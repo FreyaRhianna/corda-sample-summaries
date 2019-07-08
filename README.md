@@ -789,7 +789,7 @@ The CorDapp shows a party getting transactions notarised by either a single-node
                
  ---
  
- ## [network-verifier](https://github.com/corda/corda/tree/master/samples/network-verifier)
+ ## [network-verifier](https://github.com/corda/corda/tree/master/samples/network-verifier) (Kotlin)
  ### Description
  This CorDapp shows a method of whitelisting participants to add to a flow
  
@@ -812,3 +812,36 @@ The CorDapp shows a party getting transactions notarised by either a single-node
  observer. You can [query what transactions were made visible to what nodes through the shell](https://docs.corda.net/api-vault-query.html?highlight=query%20vault)
  ### Notes
  - **INCOMPLETE SAMPLE**
+ 
+ 
+ ---
+ 
+ ## [irs-demo](https://github.com/corda/corda/tree/master/samples/irs-demo)
+ ### Description
+ This CorDapp demonstrates a sophisticated and real-world use-case of Corda involving components like an Oracle and a web API.
+ 
+ The app launches three nodes; Bank A, Bank B and a node that simultaneously runs a notary, a network map and an
+ interest rates oracle. The two banks agree on an interest rate swap, and then do regular fixings of the deal as the
+ time on a simulated clock passes.
+ 
+ ### Features Demonstrated 
+ - An Oracle for supplying a consistent time across nodes
+ - A web API for interfacing with the information
+ - RPC communication between nodes
+ - The use of utils for sophisticated processing
+ 
+ ### Use Cases
+ - If you need time based execution between nodes
+    - In networking there is no such thing as a 'true' time. Time differences, hardware differences, communication delays, and malicious manipulation means that
+    every node in a communication could be running according to a different time. If consistency is required, time keeping can be delegated to a trusted time keeping authority (an oracle). 
+    An example use case would be in the management of a blind auction. Sealed envelopes should not be opened before the end of the auction, and this requires specifying when that 'time' has been reached and
+    that it being reached is indisputable.
+   
+     
+ ### Extending The Sample
+ - The oracle currently broadcasts the time according to its own time zone. Add functionality that allows the oracle
+ to convert the clock to the same time zone as the index/source. 
+ 
+ ### Notes
+ - This sample is still under development and isn't without bugs (these are described in the comments of the code).
+ - A more straight forward example of an oracle is available [here](https://github.com/corda/oracle-example)
